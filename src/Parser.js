@@ -394,6 +394,17 @@ const styleFuncs = [
     "\\displaystyle", "\\textstyle", "\\scriptstyle", "\\scriptscriptstyle",
 ];
 
+// Old font functions
+const oldFontFuncs = {
+    "\\rm": "\\mathrm",
+    "\\sf": "\\mathsf",
+    "\\tt": "\\mathtt",
+    "\\bf": "\\mathbf",
+    "\\it": "\\mathit",
+    "\\sl": "\\textit",
+    "\\sc": "\\textsc"
+];
+
 /**
  * Parses an implicit group, which is a group that starts at the end of a
  * specified, and ends right before a higher explicit group ends, or at EOL. It
