@@ -20,6 +20,11 @@ defineMacro("\\endgroup", "}");
 defineMacro("\\mkern", "\\kern");
 
 //////////////////////////////////////////////////////////////////////
+// accented characters
+
+defineMacro("é", "\\acute{e}");
+
+//////////////////////////////////////////////////////////////////////
 // amsmath.sty
 
 // \def\overset#1#2{\binrel@{#2}\binrel@@{\mathop{\kern\z@#2}\limits^{#1}}}

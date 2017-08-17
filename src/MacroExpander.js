@@ -30,7 +30,7 @@ class MacroExpander {
             }
             const topToken = this.stack.pop();
             const name = topToken.text;
-            if (!(name.charAt(0) === "\\" && this.macros.hasOwnProperty(name))) {
+            if (!this.macros.hasOwnProperty(name)) {
                 return topToken;
             }
             let tok;
