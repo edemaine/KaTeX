@@ -30,6 +30,13 @@ function init() {
         macroString += "&" + match[0].substr(1);
     }
 
+    // The `display` parameter turns displayMode on or off (default).
+    // Allowable values include true, false, 0, and 1.
+    if (match = /(?:^\?|&)display=([^&]*)/.exec(window.location.search)) {
+        options.displayMode = JSON.parse(match[1]);
+        macroString += "&" + match[0].substr(1);
+    }
+
     // The `before` search parameter puts normal text before the math.
     // The `after` search parameter puts normal text after the math.
     // Example use: testing baseline alignment.

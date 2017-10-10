@@ -4,14 +4,35 @@
 @mu: 1.0/18.0em;
 
 .katex-display {
-    display: block;
+    //display: block;
+    display: flex;
+    flex-wrap: wrap;
+    //justify-content: space-between;
+    align-items: baseline;
     margin: 1em 0;
-    text-align: center;
 
     > .katex {
+        flex-grow: 1;
+        //margin-left: auto;
+        //margin-right: auto;
         display: inline-block;
-        text-align: initial;
+        text-align: center;
     }
+}
+
+.katex-tag {
+    //1
+    //float: right;
+    //2
+    //position: absolute;
+    //right: 0px;
+    //vertical-align: middle;
+    margin-left: auto;
+    flex-grow: 0;
+}
+
+.katex-clear {
+    clear: both;  // clear any tags on left or right
 }
 
 .katex {

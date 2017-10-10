@@ -1593,5 +1593,10 @@ export default function buildHTML(tree, options) {
 
     htmlNode.setAttribute("aria-hidden", "true");
 
+    const tagNode = makeSpan(["katex-tag"], [new domTree.symbolNode('*')]);
+    //const clearNode = makeSpan(["katex-clear"], []);
+    //htmlNode.tag = new domTree.documentFragment([tagNode, clearNode]);
+    htmlNode.tag = tagNode;
+
     return htmlNode;
 }

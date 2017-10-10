@@ -2,6 +2,7 @@ import buildHTML from "./buildHTML";
 import buildMathML from "./buildMathML";
 import buildCommon from "./buildCommon";
 import Options from "./Options";
+import ParseError from "./ParseError";
 import Settings from "./Settings";
 import Style from "./Style";
 
@@ -29,8 +30,16 @@ const buildTree = function(tree, expression, settings) {
     ]);
 
     if (settings.displayMode) {
-        return buildCommon.makeSpan(["katex-display"], [katexNode]);
+        const nodes = [katexNode];
+        if (htmlNode.tag) {
+            nodes.push(htmlNode.tag);
+            //nodes.unshift(htmlNode.tag);
+        }
+        return buildCommon.makeSpan(["katex-display"], nodes);
     } else {
+        if (htmlNode.tag) {
+            throw new ParseError("\\tag requires displayMode set to true");
+        }
         return katexNode;
     }
 };
