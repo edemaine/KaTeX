@@ -566,3 +566,22 @@ defineFunction(["\\verb"], {
     throw new ParseError(
         "\\verb ended by end of line instead of matching delimiter");
 });
+
+// Return the first or second argument according to whether we're in text or
+// math mode, as defined in latex.ltx.
+// TODO(edemaine): Support partial arguments by turning \TextOrMath into a
+// macro.  It is currently a function because the MacroExpander doesn't (yet)
+// support knowing whether we're in math or text mode.  If \TextOrMath were a
+// macro, we could do things like `\TextOrMath{\'}{\acute}e`.
+defineFunction(["\\TextOrMath"], {
+    numArgs: 2,
+    allowedInText: true,
+}, function(context, args) {
+    let choice;
+    if (context.parser.mode === "text") {
+        choice = args[0];
+    } else {  // context.parser.mode === "math"
+        choice = args[1];
+    }
+    return ordargument(choice);
+});
