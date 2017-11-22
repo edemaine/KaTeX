@@ -302,18 +302,18 @@ defineMacro("\\approxcoloncolon",
 //////////////////////////////////////////////////////////////////////
 // Universal Unicode accents in both text and math modes
 
-defineMacro("á", "\\TextOrMath{\'a}{\\acute a}");
-defineMacro("é", "\\TextOrMath{\'e}{\\acute e}");
-defineMacro("í", "\\TextOrMath{\'i}{\\acute i}");
-defineMacro("ó", "\\TextOrMath{\'o}{\\acute o}");
-defineMacro("ú", "\\TextOrMath{\'u}{\\acute u}");
-defineMacro("à", "\\TextOrMath{\`a}{\\grave a}");
-defineMacro("è", "\\TextOrMath{\`e}{\\grave e}");
-defineMacro("ì", "\\TextOrMath{\`i}{\\grave i}");
-defineMacro("ò", "\\TextOrMath{\`o}{\\grave o}");
-defineMacro("ù", "\\TextOrMath{\`u}{\\grave u}");
-defineMacro("ä", "\\TextOrMath{\"a}{\\ddot a}");
-defineMacro("ë", "\\TextOrMath{\"e}{\\ddot e}");
-defineMacro("ï", "\\TextOrMath{\"i}{\\ddot i}");
-defineMacro("ö", "\\TextOrMath{\"o}{\\ddot o}");
-defineMacro("ü", "\\TextOrMath{\"u}{\\ddot u}");
+defineMacro("á", "\\TextOrMath{\\'a}{\\acute a}");
+defineMacro("é", "\\TextOrMath{\\'e}{\\acute e}");
+defineMacro("í", "\\TextOrMath{\\'i}{\\acute i}");
+defineMacro("ó", "\\TextOrMath{\\'o}{\\acute o}");
+defineMacro("ú", "\\TextOrMath{\\'u}{\\acute u}");
+defineMacro("à", "\\TextOrMath{\\`a}{\\grave a}");
+defineMacro("è", "\\TextOrMath{\\`e}{\\grave e}");
+defineMacro("ì", "\\TextOrMath{\\`i}{\\grave i}");
+defineMacro("ò", "\\TextOrMath{\\`o}{\\grave o}");
+defineMacro("ù", "\\TextOrMath{\\`u}{\\grave u}");
+defineMacro("ä", '\\TextOrMath{\\"a}{\\ddot a}');
+defineMacro("ë", '\\TextOrMath{\\"e}{\\ddot e}');
+defineMacro("ï", '\\TextOrMath{\\"i}{\\ddot i}');
+defineMacro("ö", '\\TextOrMath{\\"o}{\\ddot o}');
+defineMacro("ü", '\\TextOrMath{\\"u}{\\ddot u}');
