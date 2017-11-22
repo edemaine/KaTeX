@@ -894,7 +894,7 @@ export default class Parser {
     parseGroup(optional) {
         const firstToken = this.nextToken;
         // Try to parse an open brace
-        if (this.nextToken.text === (optional ? "[" : "{")) {
+        if (firstToken.text === (optional ? "[" : "{")) {
             // If we get a brace, parse an expression
             this.consume();
             const expression = this.parseExpression(false, optional ? "]" : "}");
@@ -911,6 +911,35 @@ export default class Parser {
         } else {
             // Otherwise, just return a nucleus, or nothing for an optional group
             return optional ? null : this.parseSymbol();
+        }
+    }
+
+    skipGroup(optional) {
+        const firstToken = this.nextToken;
+        // Try to parse an open brace
+        if (firstToken.text === (optional ? "[" : "{")) {
+            // If we get a brace, skip a balanced expression
+            let braces = 0;
+            let token;
+            do {
+                token = this.nextToken;
+                this.consume();
+                if (token.text === "{") {
+                    ++braces;
+                } else if (token.text === "}") {
+                    if (braces === 0) {
+                        throw new ParseError(
+                            "Too many }s while skipping argument",
+                            this.nextToken);
+                    }
+                    --braces;
+                }
+            } while (braces > 0 || (optional && token.text !== "]"));
+            return true;
+        } else {
+            // Otherwise, just a nucleus, or nothing for an optional group
+            this.consume();
+            return optional ? null : true;
         }
     }
 

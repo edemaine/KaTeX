@@ -574,14 +574,25 @@ defineFunction(["\\verb"], {
 // support knowing whether we're in math or text mode.  If \TextOrMath were a
 // macro, we could do things like `\TextOrMath{\'}{\acute}e`.
 defineFunction(["\\TextOrMath"], {
-    numArgs: 2,
+    numArgs: 0,
     allowedInText: true,
 }, function(context, args) {
     let choice;
     if (context.parser.mode === "text") {
-        choice = args[0];
+        choice = context.parser.parseGroup(false);
+        context.parser.consumeSpaces();
+        context.parser.skipGroup();
     } else {  // context.parser.mode === "math"
-        choice = args[1];
+        context.parser.skipGroup();
+        context.parser.consumeSpaces();
+        choice = context.parser.parseGroup(false);
     }
-    return ordargument(choice);
+    if (choice.type === "arg") {
+        choice = choice.result;
+    }
+    // The return value of this function gets used in two ways: it becomes
+    // the value of a new ParseNode, and its type field becomes the type of
+    // the ParseNode.  The following workaround makes this a no-op.
+    choice.value.type = choice.type;
+    return choice.value;
 });
