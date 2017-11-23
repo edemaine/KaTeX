@@ -302,6 +302,7 @@ defineMacro("\\approxcoloncolon",
 //////////////////////////////////////////////////////////////////////
 // Universal Unicode accents in both text and math modes
 
+/*
 defineMacro("á", "\\TextOrMath{\\'a}{\\acute a}");
 defineMacro("é", "\\TextOrMath{\\'e}{\\acute e}");
 defineMacro("í", "\\TextOrMath{\\'i}{\\acute i}");
@@ -317,3 +318,32 @@ defineMacro("ë", '\\TextOrMath{\\"e}{\\ddot e}');
 defineMacro("ï", '\\TextOrMath{\\"i}{\\ddot i}');
 defineMacro("ö", '\\TextOrMath{\\"o}{\\ddot o}');
 defineMacro("ü", '\\TextOrMath{\\"u}{\\ddot u}');
+*/
+const accents = [
+  ['\u0301', "\\'", '\\acute'],
+  ['\u0300', '\\`', '\\grave'],
+  ['\u0308', '\\"', '\\ddot'],
+  ['\u0342', '\\~', '\\tilde'],
+  ['\u0304', '\\=', '\\bar'],
+  ['\u0306', '\\u', '\\breve'],
+  ['\u030b', '\\v', '\\check'],
+  ['\u0302', '\\^', '\\hat'],
+  ['\u0307', '\\.', '\\dot'],
+  ['\u030a', '\\r', null],
+  ['\u030b', '\\H', null],
+];
+const chars = [];
+['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+ 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' '].forEach (
+    function (letter) {
+        accents.forEach (function (accent) {
+            const norm = (letter + accent[0]).normalize();
+            if (norm.length == 1) {
+                chars.push(norm);
+            }
+        });
+    }
+);
+console.log(chars.length, 'accented chars:', chars);
