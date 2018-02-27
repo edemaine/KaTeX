@@ -76,6 +76,11 @@ Colors:
 ColorImplicit: bl{ack\color{red}red\textcolor{green}{green}red\color{blue}blue}black
 ColorSpacing: \textcolor{red}{\displaystyle \int x} + 1
 Colorbox:  a \colorbox{teal} B \fcolorbox{blue}{red}{C} e+\colorbox{teal}x
+ContentEditable:
+    pre: "text text text text text text text text text text text text text "
+    tex: x_2
+    post: "text text text text text text text text text text text text text "
+    contentEditable: 1
 DashesAndQuotes: \text{``a'' b---c -- d----`e'-{-}-f}--``x''
 DeepFontSizing:
     tex: |

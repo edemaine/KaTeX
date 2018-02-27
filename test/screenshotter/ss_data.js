@@ -14,6 +14,7 @@ const querystring = require("querystring");
 
 const queryKeys = [
     "tex", "pre", "post", "display", "noThrow", "errorColor", "styles",
+    "contentEditable",
 ];
 let dict = fs.readFileSync(require.resolve("./ss_data.yaml"));
 dict = jsyaml.safeLoad(dict);
