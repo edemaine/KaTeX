@@ -253,7 +253,7 @@ export default class MacroExpander implements MacroContextInterface {
      * Fully expand the given macro name and return the resulting list of
      * tokens, or return `undefined` if no such macro is defined.
      */
-    expandMacro(name: string): Token[] | void {
+    expandMacro(name: string): ?Token[] {
         if (!this.macros.get(name)) {
             return undefined;
         }
@@ -274,7 +274,7 @@ export default class MacroExpander implements MacroContextInterface {
      * Fully expand the given macro name and return the result as a string,
      * or return `undefined` if no such macro is defined.
      */
-    expandMacroAsText(name: string): string | void {
+    expandMacroAsText(name: string): ?string {
         const tokens = this.expandMacro(name);
         if (tokens) {
             return tokens.map((token) => token.text).join("");
