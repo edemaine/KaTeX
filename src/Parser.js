@@ -448,23 +448,23 @@ export default class Parser {
             // begin...end is similar to left...right
             const begin =
                 assertNodeType(this.parseGivenFunction(start), "environment");
-
             const envName = begin.value.name;
-            if (!environments.hasOwnProperty(envName)) {
-                throw new ParseError(
-                    "No such environment: " + envName, begin.value.nameGroup);
-            }
             // Build the environment object. Arguments and other information will
             // be made available to the begin and end methods using properties.
-            const env = environments[envName];
-            const {args, optArgs} =
-                this.parseArguments("\\begin{" + envName + "}", env);
             const context = {
                 mode: this.mode,
                 envName: envName,
                 parser: this,
             };
-            const result = env.handler(context, args, optArgs);
+            if (environments.hasOwnProperty(envName)) {
+                const env = environments[envName];
+                const {args, optArgs} =
+                    this.parseArguments("\\begin{" + envName + "}", env);
+                const result = env.handler(context, args, optArgs);
+            } else {
+                throw new ParseError(
+                    "No such environment: " + envName, begin.value.nameGroup);
+            }
             this.expect("\\end", false);
             const endNameToken = this.nextToken;
             let end = this.parseFunction();
